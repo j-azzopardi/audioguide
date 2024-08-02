@@ -1,5 +1,6 @@
 // src/components/LanguageSelector.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LanguageSelector.css';
 
 const languages = [
@@ -14,15 +15,16 @@ const languages = [
 ];
 
 const LanguageSelector = () => {
+  const navigate = useNavigate();
+
   const handleLanguageSelect = (code) => {
-    // Handle language selection (e.g., navigate to a different page or update state)
-    alert(`Selected language: ${code}`);
+    navigate(`/audio-guide/${code}`);
   };
 
   return (
     <div className="language-selector">
       <div className="background-image" />
-      <h1 className="museum-name">Museum Name</h1>
+      <h1 className="museum-name">Valletta Black Friars Experience</h1>
       <div className="language-cards">
         {languages.map((lang) => (
           <div
@@ -40,3 +42,4 @@ const LanguageSelector = () => {
 };
 
 export default LanguageSelector;
+

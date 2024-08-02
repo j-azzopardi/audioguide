@@ -73,3 +73,26 @@
   background-color: #e0e0e0;
   transform: scale(1.05);
 }
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+  .language-cards {
+    justify-content: space-evenly; /* Ensure cards are evenly spaced */
+  }
+
+  .language-card {
+    width: 30%; /* Make sure two cards fit next to each other */
+    height: auto; /* Adjust height if needed */
+    margin-bottom: 10px; /* Add some space between rows */
+  }
+
+  .language-card .flag {
+    width: 60px; /* Adjust size for mobile */
+    height: auto;
+  }
+
+  .language-name {
+    font-size: 14px; /* Adjust font size for mobile */
+  }
+}
+

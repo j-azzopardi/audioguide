@@ -1,0 +1,147 @@
+
+/* src/components/AudioGuide.css */
+
+/* Container for the Audio Guide page */
+.audio-guide-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures full viewport height */
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+/* Stop items section */
+.stops-section {
+  flex: 1; /* Takes up available space */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.stop-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 250px; /* Bigger card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stop-card img {
+  width: 100%; /* Ensures image covers the card */
+  height: auto;
+  border-radius: 5px;
+}
+
+.stop-card h3 {
+  font-size: 18px;
+  margin-top: 10px;
+  color: #333;
+}
+
+.stop-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Player pinned at the bottom */
+.audio-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  border-top: 1px solid #444;
+  padding: 5px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensures it stays on top */
+  height: 160px;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0px 0;
+}
+
+
+.player-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-title {
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.control-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 32px;
+  color: #fff;
+  transition: color 0.3s ease;
+  margin: 0 auto;
+}
+
+.control-button img {
+  width: 24px; /* Adjust icon size as needed */
+  height: auto;
+}
+
+.control-button:hover {
+  color: #1db954; /* Spotify-like green on hover */
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.progress input {
+  width: 100%;
+  background: #555;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.progress span {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* For responsive design */
+@media (max-width: 600px) {
+  .stop-card {
+    width: 90%; /* Adjust card width for smaller screens */
+  }
+  .progress input {
+    width: 90%;
+  }
+}
+

@@ -5,8 +5,8 @@ when i press the language, directs to correct language audio and text
 when i press stop 1, it should show the transcript while it starts playing the audio
 
 add language card at the top
-add navigation at the top
-ensure audio content changes based on language
+ensure audio content changes based on language - test
+
 integrate audio playback functionality
 
 

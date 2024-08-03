@@ -1,11 +1,9 @@
-
 // src/App.js
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LanguageSelector from './components/LanguageSelector';
 import AudioGuide from './components/AudioGuide';
 
-const App = () => {
+function App() {
   return (
     <Router>
       <Routes>
@@ -14,6 +12,7 @@ const App = () => {
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
+

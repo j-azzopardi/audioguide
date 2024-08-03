@@ -1,13 +1,9 @@
 test on different devices
 
-when i press the language, directs to correct language audio and text
 
 when i press stop 1, it should show the transcript while it starts playing the audio
 
-add language card at the top
-ensure audio content changes based on language - test
 
-integrate audio playback functionality
-
+fix pause/play button going to start of track (+runtime error)
 
 

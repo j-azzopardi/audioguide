@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './AudioGuide.css';
@@ -14,6 +15,7 @@ const AudioGuide = () => {
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [lastBackPress, setLastBackPress] = useState(0); // Add state for tracking last back press time
   const audioRef = useRef(null);
   const progressRef = useRef(null);
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const AudioGuide = () => {
       togglePlay(); // Toggle play/pause if the same stop is clicked
     } else {
       setCurrentStopIndex(index);
-      setPlaying(true);
+      setPlaying(false); // Ensure it pauses first before playing
       setCurrentTime(0); // Reset currentTime when changing to a new track
     }
   };
@@ -61,13 +63,17 @@ const AudioGuide = () => {
       audioRef.current.addEventListener('timeupdate', () => {
         setCurrentTime(audioRef.current.currentTime);
       });
-      if (playing) {
-        audioRef.current.play();
-      } else {
-        audioRef.current.pause();
-      }
+      setPlaying(true); // Set playing to true to start playing the new track
     }
-  }, [language, currentStopIndex, playing]);
+  }, [currentStopIndex, language]);
+
+  useEffect(() => {
+    if (playing) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [playing]);
 
   useEffect(() => {
     if (progressRef.current) {
@@ -75,20 +81,32 @@ const AudioGuide = () => {
     }
   }, [currentTime]);
 
+  // Function to handle going to the next stop
   const handleNextStop = () => {
     if (currentStopIndex < stops.length - 1) {
       setCurrentStopIndex(currentStopIndex + 1);
       setCurrentTime(0); // Reset currentTime on track change
-      setPlaying(true);
+      setPlaying(false); // Ensure it pauses first before playing
     }
   };
 
+  // Function to handle going to the previous stop
   const handlePreviousStop = () => {
-    if (currentStopIndex > 0) {
-      setCurrentStopIndex(currentStopIndex - 1);
-      setCurrentTime(0); // Reset currentTime on track change
+    const now = Date.now();
+    if (now - lastBackPress < 3000) {
+      // If back button pressed within 3 second, go to previous track
+      if (currentStopIndex > 0) {
+        setCurrentStopIndex(currentStopIndex - 1);
+        setPlaying(!playing);
+      }
+    } else {
+      // Otherwise, reset to the beginning of the current track
+      audioRef.current.currentTime = 0;
+      setCurrentTime(0);
       setPlaying(true);
+
     }
+    setLastBackPress(now);
   };
 
   return (
@@ -146,4 +164,3 @@ const AudioGuide = () => {
 };
 
 export default AudioGuide;
-

@@ -1,9 +1,7 @@
 test on different devices
 
-
 when i press stop 1, it should show the transcript while it starts playing the audio
 
-
-fix pause/play button going to start of track (+runtime error)
+fix track at end. maybe it should go automatically to the next track when it finishes
 
 

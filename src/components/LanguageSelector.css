@@ -1,4 +1,23 @@
 /* src/components/LanguageSelector.css */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling */
+}
+.logo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border: 10px;
+}
+
+
 .language-selector {
   display: flex;
   flex-direction: column;
@@ -6,38 +25,17 @@
   justify-content: center;
   height: 100vh;
   padding: 20px;
-  background-color: #f4f4f4;
-  position: relative;
-  overflow: hidden;
-}
-
-.background-image {
+  background-color: #C18454;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200px; /* Adjust height as needed */
-  background-image: url('https://example.com/your-background-image.jpg'); /* Replace with your image URL */
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-}
-
-.museum-name {
-  font-size: 24px;
-  margin: 0;
-  padding-top: 20px;
-  color: black; /* Adjust for visibility against background */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-weight: bold;
+  overflow: hidden;
 }
 
 .language-cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+justify-content: center;
   gap: 15px;
-  margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 .language-card {

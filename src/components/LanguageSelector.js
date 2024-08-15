@@ -2,6 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LanguageSelector.css';
+import { ReactComponent as Logo } from '../assets/logo.svg';
 
 const languages = [
   { code: 'mt', name: 'Maltese', flag: 'https://flagcdn.com/w320/mt.png' },
@@ -23,8 +24,9 @@ const LanguageSelector = () => {
 
   return (
     <div className="language-selector">
-      <div className="background-image" />
-      <h1 className="museum-name">Valletta Black Friars Experience</h1>
+      <div className="logo-box">
+        <Logo className="logo" />
+      </div>
       <div className="language-cards">
         {languages.map((lang) => (
           <div
@@ -40,6 +42,8 @@ const LanguageSelector = () => {
     </div>
   );
 };
-
+function disableScrolling() {
+  document.body.style.overflow = 'hidden';
+}
 export default LanguageSelector;
 

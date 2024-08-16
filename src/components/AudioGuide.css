@@ -8,7 +8,7 @@
   background-color: #333;
   color: #fff;
   border: none;
-  padding: 10px 15px;
+  padding: 15px 15px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
@@ -23,7 +23,8 @@
 }
 
 .back-button:hover {
-  background-color: #1db954; /* Spotify-like green on hover */
+  background-color: #fff; /* Change to white */
+  color: #333; /* Change to dark color */
 }
 
 /* Container for the Audio Guide page */
@@ -31,10 +32,11 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensures full viewport height */
-  background-color: #f9f9f9;
+  background-color: #C18454;
   padding: 20px;
   position: relative; /* Ensure absolute positioning works within this container */
 }
+
 /* Stop items section */
 .stops-section {
   flex: 1; /* Takes up available space */
@@ -44,7 +46,7 @@
   align-items: center;
   gap: 20px;
   padding: 20px;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .stop-card {
@@ -91,7 +93,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000; /* Ensures it stays on top */
-  height: 160px;
+  height: 100px;
 }
 
 .player-info {
@@ -100,7 +102,6 @@
   width: 100%;
   padding: 0px 0;
 }
-
 
 .player-details {
   display: flex;
@@ -112,7 +113,6 @@
   font-size: 18px;
   font-weight: bold;
 }
-
 
 .controls {
   display: flex;
@@ -137,9 +137,6 @@
   height: auto;
 }
 
-.control-button:hover {
-  color: #1db954; /* Spotify-like green on hover */
-}
 
 .progress {
   display: flex;
@@ -161,6 +158,41 @@
   color: #ccc;
 }
 
+.view-toggle-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 15px 15px; /* Match padding to back-button */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Match font size to back-button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.map-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.map-container area {
+  cursor: pointer;
+}
+
 /* For responsive design */
 @media (max-width: 600px) {
   .stop-card {
@@ -170,4 +202,3 @@
     width: 90%;
   }
 }
-

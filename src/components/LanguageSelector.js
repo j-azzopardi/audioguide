@@ -1,6 +1,7 @@
+
 // src/components/LanguageSelector.js
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './LanguageSelector.css';
 import { ReactComponent as Logo } from '../assets/logo.svg';
 
@@ -16,7 +17,15 @@ const languages = [
 ];
 
 const LanguageSelector = () => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
+
+useEffect(() => {
+    if (location.state?.startAnimation) {
+      setIsAnimating(true); // Start animation if the state triggers it
+    }
+  }, [location.state]);
 
   const handleLanguageSelect = (code) => {
     navigate(`/audio-guide/${code}`);
@@ -25,9 +34,9 @@ const LanguageSelector = () => {
   return (
     <div className="language-selector">
       <div className="logo-box">
-        <Logo className="logo" />
+        <Logo className={`logo ${isAnimating ? 'shrink-logo' : ''}`} />
       </div>
-      <div className="language-cards">
+      <div className={`language-cards ${isAnimating ? 'float-in' : ''}`}>
         {languages.map((lang) => (
           <div
             key={lang.code}
@@ -42,8 +51,5 @@ const LanguageSelector = () => {
     </div>
   );
 };
-function disableScrolling() {
-  document.body.style.overflow = 'hidden';
-}
-export default LanguageSelector;
 
+export default LanguageSelector;

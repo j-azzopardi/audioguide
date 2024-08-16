@@ -1,0 +1,78 @@
+
+/* src/components/HomeScreen.css */
+.home-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #C18454; /* Background color of the home screen */
+  text-align: center;
+  position: relative; /* Allow positioning of children */
+  overflow: hidden; /* Hide overflow for a clean look */
+}
+
+.design-container {
+  position: static;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Space between design and text */
+}
+
+.design {
+  width: 100%; /* Set the width of the design */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.home-logo {
+  position: absolute;
+  width: 90%; /* Set the width of the logo */
+  height: auto; /* Maintain aspect ratio */
+  pointer-events: none; /* Allow clicks to pass through to the parent div */
+}
+
+.tap-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24px;
+  color: #fff;
+  margin-top: 20px; /* Add space above the text */
+}
+
+/* Animations */
+
+@keyframes moveLogo {
+  0% {
+    top: 50%; /* Start position */
+    transform: translateY(-50%);
+  }
+  100% {
+    top: 30px; /* Position of the logo in LanguageSelector */
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.5s forwards; /* Fade out duration */
+}
+
+.logo-move {
+  animation: moveLogo 0.7s forwards; /* Movement duration */
+  position: absolute; /* Needed for top positioning */
+}
+
+.hide {
+  opacity: 0; /* Hide element */
+}

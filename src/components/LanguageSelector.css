@@ -6,36 +6,35 @@ html, body {
   height: 100%;
   overflow: hidden; /* Prevent scrolling */
 }
-.logo-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  border: 10px;
-}
-
-
 .language-selector {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding: 20px;
   background-color: #C18454;
   position: absolute;
   overflow: hidden;
 }
 
+
+.logo-box {
+  position: relative; /* Relative to parent container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 65px;
+  padding-bottom: 20px;
+}
+
 .language-cards {
   display: flex;
   flex-wrap: wrap;
-justify-content: center;
+  justify-content: center;
   gap: 15px;
   margin-bottom: 100px;
+  animation: floatIn 1s ease-out; /* Add animation */
 }
 
 .language-card {
@@ -60,6 +59,7 @@ justify-content: center;
   width: 80px; /* Adjust size for mobile */
   height: auto;
   margin-bottom: 10px; /* Space between flag and language name */
+  outline: 3px solid #ddd;
 }
 
 .language-name {
@@ -86,7 +86,7 @@ justify-content: center;
 
   .language-card .flag {
     width: 60px; /* Adjust size for mobile */
-    height: auto;
+    height: 40px;
   }
 
   .language-name {
@@ -94,3 +94,26 @@ justify-content: center;
   }
 }
 
+/* Keyframes for floating in from the bottom */
+@keyframes floatIn {
+  0% {
+    transform: translateY(50px); /* Start from 50px below */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); /* End at normal position */
+    opacity: 1;
+  }
+}
+@keyframes shrinkLogo {
+  0% {
+    transform: scale(1); /* Initial scale */
+  }
+  100% {
+    transform: scale(0.99); /* Final scale (95% of the original size) */
+  }
+}
+
+.shrink-logo {
+  animation: shrinkLogo 0.5s ease-out forwards; /* Apply shrinking animation */
+}

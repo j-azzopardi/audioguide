@@ -1,7 +1,9 @@
 
+// src/components/AudioGuide.js
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './AudioGuide.css';
+import InteractiveMap from './InteractiveMap'; // Import the InteractiveMap component
 
 const stops = [
   { id: 1, title: 'Stop 1', src: { en: '/audio/en/audio1_en.mp3', it: '/audio/it/audio1_it.mp3' }, image: 'path/to/image1.jpg' },
@@ -15,7 +17,8 @@ const AudioGuide = () => {
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [lastBackPress, setLastBackPress] = useState(0); // Add state for tracking last back press time
+  const [lastBackPress, setLastBackPress] = useState(0);
+  const [view, setView] = useState('cards');
   const audioRef = useRef(null);
   const progressRef = useRef(null);
   const navigate = useNavigate();
@@ -24,11 +27,11 @@ const AudioGuide = () => {
 
   const handleStopClick = (index) => {
     if (index === currentStopIndex) {
-      togglePlay(); // Toggle play/pause if the same stop is clicked
+      togglePlay();
     } else {
       setCurrentStopIndex(index);
-      setPlaying(false); // Ensure it pauses first before playing
-      setCurrentTime(0); // Reset currentTime when changing to a new track
+      setPlaying(false);
+      setCurrentTime(0);
     }
   };
 
@@ -44,7 +47,7 @@ const AudioGuide = () => {
   const handleProgressChange = (event) => {
     const newValue = event.target.value;
     audioRef.current.currentTime = newValue;
-    setCurrentTime(newValue); // Update state for progress bar
+    setCurrentTime(newValue);
   };
 
   const formatTime = (seconds) => {
@@ -63,7 +66,7 @@ const AudioGuide = () => {
       audioRef.current.addEventListener('timeupdate', () => {
         setCurrentTime(audioRef.current.currentTime);
       });
-      setPlaying(true); // Set playing to true to start playing the new track
+      setPlaying(true);
     }
   }, [currentStopIndex, language]);
 
@@ -81,32 +84,35 @@ const AudioGuide = () => {
     }
   }, [currentTime]);
 
-  // Function to handle going to the next stop
   const handleNextStop = () => {
     if (currentStopIndex < stops.length - 1) {
       setCurrentStopIndex(currentStopIndex + 1);
-      setCurrentTime(0); // Reset currentTime on track change
-      setPlaying(false); // Ensure it pauses first before playing
+      setCurrentTime(0);
+      setPlaying(false);
     }
   };
 
-  // Function to handle going to the previous stop
   const handlePreviousStop = () => {
     const now = Date.now();
     if (now - lastBackPress < 3000) {
-      // If back button pressed within 3 second, go to previous track
       if (currentStopIndex > 0) {
         setCurrentStopIndex(currentStopIndex - 1);
         setPlaying(!playing);
       }
     } else {
-      // Otherwise, reset to the beginning of the current track
       audioRef.current.currentTime = 0;
       setCurrentTime(0);
       setPlaying(true);
-
     }
     setLastBackPress(now);
+  };
+
+  const handleMapClick = (stopId) => {
+    const stopIndex = stops.findIndex(stop => stop.id === stopId);
+    if (stopIndex !== -1) {
+      setCurrentStopIndex(stopIndex);
+      setPlaying(true);
+    }
   };
 
   return (
@@ -114,19 +120,25 @@ const AudioGuide = () => {
       <button className="back-button" onClick={() => navigate(-1)}>
         <i className="fas fa-arrow-left"></i> Back
       </button>
-      <div className="stops-section">
-        {stops.map((stop, index) => (
-          <div
-            key={stop.id}
-            className="stop-card"
-            onClick={() => handleStopClick(index)}
-          >
-            <img src={stop.image} alt={stop.title} />
-            <h3>{stop.title}</h3>
-          </div>
-        ))}
-      </div>
-      
+      <button className="view-toggle-button" onClick={() => setView(view === 'cards' ? 'map' : 'cards')}>
+        {view === 'cards' ? 'View Map' : 'View Cards'}
+      </button>
+      {view === 'cards' ? (
+        <div className="stops-section">
+          {stops.map((stop, index) => (
+            <div
+              key={stop.id}
+              className="stop-card"
+              onClick={() => handleStopClick(index)}
+            >
+              <img src={stop.image} alt={stop.title} />
+              <h3>{stop.title}</h3>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <InteractiveMap onAreaClick={handleMapClick} />
+      )}
       {currentStop && (
         <div className="audio-player">
           <div className="player-info">

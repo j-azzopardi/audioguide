@@ -10,7 +10,7 @@ entire app to be preloaded when qr code is scanned (if we go for a webapp, there
 subdomain
   wildcard certificate
 
-
+fix logo at homescreen transitioning to languageselector
 final touches language selector + animation
 
 research audio player library react

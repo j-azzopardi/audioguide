@@ -8,7 +8,6 @@ import InteractiveMap from './InteractiveMap'; // Import the InteractiveMap comp
 const stops = [
   { id: 1, title: 'Stop 1', src: { en: '/audio/en/audio1_en.mp3', it: '/audio/it/audio1_it.mp3' }, image: 'path/to/image1.jpg' },
   { id: 2, title: 'Stop 2', src: { en: '/audio/en/audio2_en.mp3', it: '/audio/it/audio2_it.mp3' }, image: 'path/to/image2.jpg' },
-  // Add more stops with language-specific audio files
 ];
 
 const AudioGuide = () => {
@@ -114,65 +113,66 @@ const AudioGuide = () => {
       setPlaying(true);
     }
   };
-
-  return (
-    <div className="audio-guide-container">
-      <button className="back-button" onClick={() => navigate(-1)}>
-        <i className="fas fa-arrow-left"></i> Back
-      </button>
-      <button className="view-toggle-button" onClick={() => setView(view === 'cards' ? 'map' : 'cards')}>
-        {view === 'cards' ? 'View Map' : 'View Cards'}
-      </button>
-      {view === 'cards' ? (
-        <div className="stops-section">
-          {stops.map((stop, index) => (
-            <div
-              key={stop.id}
-              className="stop-card"
-              onClick={() => handleStopClick(index)}
-            >
-              <img src={stop.image} alt={stop.title} />
-              <h3>{stop.title}</h3>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <InteractiveMap onAreaClick={handleMapClick} />
-      )}
-      {currentStop && (
-        <div className="audio-player">
-          <div className="player-info">
-            <div className="player-details">
-              <h3 className="player-title">{currentStop.title}</h3>
-            </div>
+return (
+  <div className="audio-guide-container">
+    <button className="back-button" onClick={() => navigate(-1)}>
+      <i className="fas fa-arrow-left"></i> Back
+    </button>
+    <button className="view-toggle-button" onClick={() => setView(view === 'cards' ? 'map' : 'cards')}>
+      {view === 'cards' ? 'Map View' : 'List View'}
+    </button>
+    <div className={`transition-section ${view === 'cards' ? 'active' : ''}`}>
+      <div className="stops-section">
+        {stops.map((stop, index) => (
+          <div
+            key={stop.id}
+            className="stop-card"
+            onClick={() => handleStopClick(index)}
+          >
+            <img src={stop.image} alt={stop.title} />
+            <h3>{stop.title}</h3>
           </div>
-          <div className="controls">
-            <button className="control-button" onClick={handlePreviousStop}>
-              <i className="fas fa-step-backward" aria-hidden="true"></i>
-            </button>
-            <button className="control-button" onClick={togglePlay}>
-              <i className={playing ? "fas fa-pause" : "fas fa-play"} aria-hidden="true"></i>
-            </button>
-            <button className="control-button" onClick={handleNextStop}>
-              <i className="fas fa-step-forward" aria-hidden="true"></i>
-            </button>
-          </div>
-          <div className="progress">
-            <input
-              type="range"
-              min="0"
-              max={duration || 0}
-              value={currentTime || 0}
-              onChange={handleProgressChange}
-              ref={progressRef}
-            />
-            <span>{formatTime(currentTime || 0)} / {formatTime(duration || 0)}</span>
-          </div>
-        </div>
-      )}
-      <audio ref={audioRef} />
+        ))}
+      </div>
     </div>
-  );
+    <div className={`transition-section ${view === 'map' ? 'active' : ''}`}>
+      <div className="map-container">
+        <InteractiveMap onAreaClick={handleMapClick} />
+      </div>
+    </div>
+    {currentStop && (
+      <div className="audio-player">
+        <div className="player-info">
+          <div className="player-details">
+            <h3 className="player-title">{currentStop.title}</h3>
+          </div>
+        </div>
+        <div className="controls">
+          <button className="control-button" onClick={handlePreviousStop}>
+            <i className="fas fa-step-backward" aria-hidden="true"></i>
+          </button>
+          <button className="control-button" onClick={togglePlay}>
+            <i className={playing ? "fas fa-pause" : "fas fa-play"} aria-hidden="true"></i>
+          </button>
+          <button className="control-button" onClick={handleNextStop}>
+            <i className="fas fa-step-forward" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div className="progress">
+          <input
+            type="range"
+            min="0"
+            max={duration || 0}
+            value={currentTime || 0}
+            onChange={handleProgressChange}
+            ref={progressRef}
+          />
+          <span>{formatTime(currentTime || 0)} / {formatTime(duration || 0)}</span>
+        </div>
+      </div>
+    )}
+    <audio ref={audioRef} />
+  </div>
+);
 };
-
 export default AudioGuide;

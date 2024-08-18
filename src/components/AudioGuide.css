@@ -1,5 +1,7 @@
 
-/* Global Styles */
+/* AudioGuide.css */
+
+/* Global Button Styles */
 button {
   background-color: #333;
   color: #fff;
@@ -53,119 +55,40 @@ button {
 
 /* Stop Card */
 .stop-card {
+  display: flex; /* Flexbox layout for horizontal alignment */
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
-  text-align: center;
-  width: 250px; /* Bigger card */
+  text-align: left; /* Align text to the left */
+  width: 100%; /* Full width of the parent container */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-items: center; /* Vertically align items */
 }
-
 .stop-card img {
-  width: 100%; /* Ensures image covers the card */
+  width: 33%; /* Image takes 33% of the card width */
   height: auto;
   border-radius: 5px;
+  margin-right: 20px; /* Space between image and text */
 }
 
 .stop-card h3 {
   font-size: 18px;
-  margin-top: 10px;
+  margin: 0; /* Remove margin for better alignment */
   color: #333;
+  flex-grow: 1; /* Allow the heading to take up the remaining space */
+  text-align: center;
 }
-
 .stop-card:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Audio Player Pinned at the Bottom */
-.audio-player {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  color: #fff;
-  border-top: 1px solid #444;
-  padding: 5px;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000; /* Ensures it stays on top */
-  height: 100px;
-}
-
-/* Player Info */
-.player-info {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 0;
-}
-
-.player-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.player-title {
-  padding-left: 10px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* Controls */
-.controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.control-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin: 0 10px;
-  font-size: 32px;
-  color: #fff;
-  transition: color 0.3s ease;
-}
-
-.control-button img {
-  width: 24px; /* Adjust icon size as needed */
-  height: auto;
-}
-
-/* Progress */
-.progress {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.progress input {
-  width: 100%;
-  background: #555;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.progress span {
-  margin-top: 5px;
-  font-size: 14px;
-  color: #ccc;
-}
-
 /* View Toggle Button */
 .view-toggle-button {
   position: absolute;
-  top: 20px;
+  top: 22px;
   right: 20px;
   z-index: 1001;
 }
@@ -216,9 +139,5 @@ button {
 @media (max-width: 600px) {
   .stop-card {
     width: 90%; /* Adjust card width for smaller screens */
-  }
-
-  .progress input {
-    width: 90%;
   }
 }

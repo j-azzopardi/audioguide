@@ -1,0 +1,118 @@
+
+/* Wrapper div to capture clicks */
+.audio-player-wrapper {
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+/* Positioning for the audio player */
+.audio-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333; /* Background color for the entire player */
+  z-index: 1000;
+  color: #fff; /* Ensure text color is visible */
+  border-radius: 20px; /* Rounded corners for the player */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+}
+
+/* Track information container */
+.track-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  font-size: 20px; /* Adjust font size as needed */
+  white-space: nowrap; /* Prevent text wrapping */
+  color: #fff; /* Text color for track info */
+  padding: 10px;
+  cursor: pointer; /* Indicate it's clickable */
+  border-radius: 20px; /* Rounded corners for track info */
+}
+
+/* Ensure controls section is above the progress bar */
+.audio-player .rhap_controls-section {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  justify-content: center;
+  margin-top: 0px; /* Space between controls and progress bar */
+  background-color: #333; /* Background color for controls section */ 
+  order: -1; 
+}
+.audio-player .rhap_controls-section .rhap_main-controls{
+  gap: 25px;
+}
+
+/* Hide the loop button and volume rocker */
+.audio-player .rhap_additional-controls,
+.audio-player .rhap_controls-section .rhap_volume-controls {
+  display: none !important;
+}
+
+/* Progress bar styling */
+.audio-player .rhap_progress-bar {
+  margin-top: 5px; /* Add space between controls and progress bar */
+  background-color: #555; /* Background color for the progress bar */
+}
+.audio-player .rhap_progress-section {
+  padding-bottom: 10px;
+}
+
+/* Specifically target the rhap_container class */
+.audio-player .rhap_container {
+  background-color: #333 !important; /* Ensure container background color is #333 */
+  padding: 2px;
+  box-shadow: none !important;
+}
+
+/* Ensure the time display is centered and visible */
+.audio-player .rhap_time {
+  color: #fff; /* Make sure the time text is visible */
+  font-size: 14px; /* Adjust font size as needed */
+  margin: 0 10px; /* Add margin for spacing */
+}
+
+/* Expanded state styling */
+.audio-player-wrapper.expanded .audio-player {
+  height: 50%; /* Adjust height as needed */
+}
+
+.audio-player-wrapper.expanded .transcript {
+  display: block;
+  padding: 10px;
+  background-color: #444; /* Background color for the transcript section */
+  color: #fff;
+  max-height: calc(100% - 60px); /* Adjust based on your layout */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+.transcript {
+  display: none; /* Hide transcript by default */
+}
+.track-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  font-size: 20px; /* Adjust font size as needed */
+  color: #fff; /* Text color for track info */
+  padding: 10px;
+  cursor: pointer; /* Indicate it's clickable */
+  border-radius: 20px; /* Rounded corners for track info */
+}
+
+/* Text inside the track-info container */
+.track-info .track-title {
+  padding-left: 10px; /* Add left padding to text */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Style for the closed captions icon */
+.closed-captions-icon {
+  cursor: pointer;
+  color: #fff; /* Icon color to match the text */
+  font-size: 30px; /* Adjust size as needed */
+  margin-right: 10px;
+}

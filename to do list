@@ -1,27 +1,18 @@
-test on different devices
-
-when i press stop 1, it should show the transcript while it starts playing the audio
-
-fix track at end. maybe it should go automatically to the next track when it finishes
-
 
 entire app to be preloaded when qr code is scanned (if we go for a webapp, there is no reception inside the museum)
 
 subdomain
   wildcard certificate
 
-fix logo at homescreen transitioning to languageselector
-final touches language selector + animation
 
-research audio player library react
 
 map view - add functionality
 
-transcript + scrollability
 
 pwa - service worker
 
-design 3rd screen 
+
+qr code or availability only when on site
 
 
 

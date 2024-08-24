@@ -21,9 +21,9 @@ const LanguageSelector = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-useEffect(() => {
+  useEffect(() => {
     if (location.state?.startAnimation) {
-      setIsAnimating(true); // Start animation if the state triggers it
+      setIsAnimating(true);
     }
   }, [location.state]);
 

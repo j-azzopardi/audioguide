@@ -1,4 +1,6 @@
+
 /* src/components/LanguageSelector.css */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -6,6 +8,7 @@ html, body {
   height: 100%;
   overflow: hidden; /* Prevent scrolling */
 }
+
 .language-selector {
   display: flex;
   flex-direction: column;
@@ -17,9 +20,7 @@ html, body {
   overflow: hidden;
 }
 
-
 .logo-box {
-  position: relative; /* Relative to parent container */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,15 +51,14 @@ html, body {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  width: 120px; /* Adjust width for mobile */
-  height: 150px; /* Adjust height for mobile */
-  position: relative;
+  width: 120px;
+  height: 150px;
 }
 
 .language-card .flag {
-  width: 80px; /* Adjust size for mobile */
+  width: 80px;
   height: auto;
-  margin-bottom: 10px; /* Space between flag and language name */
+  margin-bottom: 10px;
   outline: 3px solid #ddd;
 }
 
@@ -75,45 +75,46 @@ html, body {
 /* Media query for mobile devices */
 @media (max-width: 600px) {
   .language-cards {
-    justify-content: space-evenly; /* Ensure cards are evenly spaced */
+    justify-content: space-evenly;
   }
 
   .language-card {
-    width: 30%; /* Make sure two cards fit next to each other */
-    height: auto; /* Adjust height if needed */
-    margin-bottom: 10px; /* Add some space between rows */
+    width: 30%;
+    height: auto;
+    margin-bottom: 10px;
   }
 
   .language-card .flag {
-    width: 60px; /* Adjust size for mobile */
+    width: 60px;
     height: 40px;
   }
 
   .language-name {
-    font-size: 14px; /* Adjust font size for mobile */
+    font-size: 14px;
   }
 }
 
 /* Keyframes for floating in from the bottom */
 @keyframes floatIn {
   0% {
-    transform: translateY(50px); /* Start from 50px below */
+    transform: translateY(50px);
     opacity: 0;
   }
   100% {
-    transform: translateY(0); /* End at normal position */
+    transform: translateY(0);
     opacity: 1;
   }
 }
+
 @keyframes shrinkLogo {
   0% {
-    transform: scale(1); /* Initial scale */
+    transform: scale(1);
   }
   100% {
-    transform: scale(0.99); /* Final scale (95% of the original size) */
+    transform: scale(0.99);
   }
 }
 
 .shrink-logo {
-  animation: shrinkLogo 0.5s ease-out forwards; /* Apply shrinking animation */
+  animation: shrinkLogo 0.5s ease-out forwards;
 }

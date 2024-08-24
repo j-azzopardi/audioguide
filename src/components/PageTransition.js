@@ -3,15 +3,15 @@
 import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useLocation } from 'react-router-dom';
-import './PageTransition.css'; // Ensure this file includes the transition styles
+import './PageTransition.css';
 
 const PageTransition = ({ children }) => {
   const location = useLocation();
   
-  // List of paths that should not have animations
+  // Paths without transition animations
   const noTransitionPaths = ['/'];
 
-  // Determine whether the current path should have animation
+  // Determine if animation is needed
   const shouldAnimate = !noTransitionPaths.includes(location.pathname);
 
   return (

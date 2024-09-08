@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './AudioGuide.css';
 import InteractiveMap from './InteractiveMap';
@@ -9,29 +9,49 @@ import { FaMap, FaList } from 'react-icons/fa';
 const stops = [
   {
     id: 1,
-    title: 'Stop 1',
-    src: { en: '/audio/en/audio1_en.mp3', it: '/audio/it/audio1_it.mp3' },
-    image: '/images/image1.svg',
-    transcript: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry...',
+    title: 'Introduction',
+    src: { 
+      en: '/audio/en/intro_en.mp3',
+      it: '/audio/it/intro_it.mp3',
+    },
+    transcriptPaths: {
+      en: '/transcripts/en/intro.txt',
+      it: '/transcripts/intro_transcript_it.txt',
+    },
   },
   {
     id: 2,
-    title: 'Stop 2',
-    src: { en: '/audio/en/audio2_en.mp3', it: '/audio/it/audio2_it.mp3' },
-    image: '/images/image2.jpg',
-    transcript: 'This is the transcript for Stop 2.',
+    title: '1 - The Ottoman - Royalty at the Black Friars',
+    src: { en: '/audio/en/experience1_en.mp3', it: '/audio/it/audio2_it.mp3' },
+    image: '/images/exp1.jpg',
+    transcriptPaths: {
+      en: '/transcripts/en/exp1.txt',
+      it: '/transcripts/audio2_transcript_it.txt',
+    },
   },
   // Add more stops as needed
 ];
 
 const AudioGuide = () => {
-  const { language } = useParams();
+  const { language } = useParams(); // Get the language from URL params
   const [currentStopIndex, setCurrentStopIndex] = useState(null);
   const [view, setView] = useState('cards');
   const [autoPlay, setAutoPlay] = useState(false);
+  const [transcript, setTranscript] = useState('');
   const navigate = useNavigate();
 
   const currentStop = currentStopIndex !== null ? stops[currentStopIndex] : null;
+
+  // Fetch the transcript when the currentStop or language changes
+  useEffect(() => {
+    if (currentStop && currentStop.transcriptPaths) {
+      const transcriptPath = currentStop.transcriptPaths[language] || currentStop.transcriptPaths['en']; // Fallback to English if language is not available
+      fetch(transcriptPath)
+        .then((response) => response.text())
+        .then((text) => setTranscript(text))
+        .catch((error) => console.error('Error loading transcript:', error));
+    }
+  }, [currentStop, language]); // Update when stop or language changes
 
   const handleStopClick = (index) => {
     setCurrentStopIndex(index);
@@ -96,9 +116,9 @@ const AudioGuide = () => {
         <CustomAudioPlayer
           currentTrack={{
             title: currentStop.title,
-            src: currentStop.src[language],
+            src: currentStop.src[language], // Play the audio for the selected language
             image: currentStop.image,
-            transcript: currentStop.transcript,
+            transcript, // The fetched transcript based on the selected language
           }}
           onNext={handleNextStop}
           onPrevious={handlePreviousStop}

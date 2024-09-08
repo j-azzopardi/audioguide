@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './AudioPlayer.css';
-import { FaClosedCaptioning } from 'react-icons/fa';
+import { FaClosedCaptioning, FaTimes } from 'react-icons/fa'; // Import FaTimes for the close button
 
 const CustomAudioPlayer = ({ currentTrack, onNext, onPrevious }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -25,7 +25,12 @@ const CustomAudioPlayer = ({ currentTrack, onNext, onPrevious }) => {
         <div className="track-info" onClick={toggleExpand}>
           <span className="track-title">{currentTrack.title}</span>
           {currentTrack.transcript && (
-            <FaClosedCaptioning className="closed-captions-icon" />
+            // Conditionally render FaClosedCaptioning or FaTimes based on isExpanded state
+            isExpanded ? (
+              <FaTimes className="close-icon" />
+            ) : (
+              <FaClosedCaptioning className="closed-captions-icon" />
+            )
           )}
         </div>
 

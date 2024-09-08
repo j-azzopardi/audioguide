@@ -107,6 +107,10 @@ button {
 .map-container area {
   cursor: pointer;
 }
+.transcript p {
+  white-space: pre-wrap;
+  text-align: justify;
+}
 
 /* Transition Section */
 .transition-section {

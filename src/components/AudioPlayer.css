@@ -65,7 +65,7 @@
 }
 
 .audio-player-wrapper.expanded .audio-player {
-  height: 75%;
+  height: 90%;
 }
 
 .image-container {
@@ -95,10 +95,17 @@
 
 .track-info .track-title {
   padding-left: 10px;
-  white-space: nowrap;
+
 }
 
 .closed-captions-icon {
+  cursor: pointer;
+  color: #fff;
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.closed-captions-icon, .close-icon { 
   cursor: pointer;
   color: #fff;
   font-size: 30px;
